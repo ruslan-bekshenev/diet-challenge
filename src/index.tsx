@@ -1,10 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Provider } from 'react-redux'
 
 import { createTheme, ThemeProvider } from '@mui/material'
 
 import './index.css'
 
+import { store } from './store/store'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
@@ -17,9 +19,11 @@ const darkTheme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={darkTheme}>
-      <App />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={darkTheme}>
+        <App />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
 )
 

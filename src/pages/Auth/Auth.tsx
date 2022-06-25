@@ -11,14 +11,14 @@ const Auth = () => {
           <Grid>
             <Typography variant="h4">Войти</Typography>
           </Grid>
-          <Grid item xs={24} maxWidth="300px">
+          <Grid item xs={12} width="80%" justifyContent="center">
             <TextField label="Email" fullWidth></TextField>
           </Grid>
-          <Grid item>
+          <Grid item xs={12} width="80%" justifyContent="center">
             <TextField size="medium" label="Пароль" type="password" fullWidth></TextField>
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} width="50%">
             <Button variant="contained" fullWidth>
               Войти
             </Button>

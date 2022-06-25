@@ -16,7 +16,9 @@ const Main = () => {
         </AppBar>
       </Box>
       <Container maxWidth="md" sx={{ padding: 4 }}>
-        <Paper>asd</Paper>
+        <Paper sx={{ padding: 4 }}>
+          
+        </Paper>
       </Container>
     </div>
   )
