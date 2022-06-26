@@ -14,7 +14,7 @@ const InputForm: FC<InputFormProps> = ({ name, control, ...rest }) => {
       control={control}
       name={name}
       render={({ field }) => (
-        <FormControl>
+        <FormControl fullWidth={rest.fullWidth}>
           <TextField {...rest} {...field} />
         </FormControl>
       )}

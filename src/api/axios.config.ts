@@ -1,17 +1,17 @@
 import axios from 'axios'
+import storage from 'store2'
 
 function getLocalAccessToken() {
-  const accessToken = window.localStorage.getItem('accessToken')
+  const accessToken = storage.get('accessToken')
   return accessToken
 }
 function getLocalRefreshToken() {
-  const refreshToken = window.localStorage.getItem('refreshToken')
+  const refreshToken = storage.get('refreshToken')
   return refreshToken
 }
 
-console.log(process.env.BASE_URL)
 export const instance = axios.create({
-  baseURL: process.env.BASE_URL,
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -42,7 +42,7 @@ instance.interceptors.response.use(
           const rs = await refreshToken()
           const { accessToken } = rs.data
           window.localStorage.setItem('accessToken', accessToken)
-          instance.defaults.headers.common['x-access-token'] = accessToken
+          instance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
           return instance(originalConfig)
         } catch (_error: any) {
           if (_error.response && _error.response.data) {

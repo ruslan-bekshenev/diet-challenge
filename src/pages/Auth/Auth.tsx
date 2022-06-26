@@ -1,7 +1,8 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Button, Grid, Paper, Typography } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
+import { Grid, Paper, Typography } from '@mui/material'
 import { Container } from '@mui/system'
 
 import InputForm from '../../components/InputForm/InputForm'
@@ -9,12 +10,16 @@ import { useAuthContext } from '../../context/AuthProvider'
 import { LoginProps } from '../../context/AuthProvider/types'
 
 const Auth = () => {
-  const { control, handleSubmit } = useForm<LoginProps>()
-  const { signin } = useAuthContext()
+  const { control, handleSubmit } = useForm<LoginProps>({
+    defaultValues: {
+      email: 'rbekshenev23@gmail.com',
+      password: 'Steeki2323@@@',
+    },
+  })
+  const { signin, isLoading } = useAuthContext()
   const handleAuth = (data: LoginProps): void => {
-    signin(data)
+    signin?.(data)
   }
-  console.log(process.env)
   return (
     <Container maxWidth="sm" sx={{ py: 10, height: '100%', alignItems: 'center', display: 'flex' }}>
       <Paper sx={{ width: '100%', padding: 10 }}>
@@ -37,6 +42,7 @@ const Auth = () => {
                 label="E-mail"
                 type="email"
                 fullWidth
+                disabled={isLoading}
               />
             </Grid>
             <Grid item xs={12} width="80%" justifyContent="center">
@@ -47,13 +53,14 @@ const Auth = () => {
                 label="Пароль"
                 type="password"
                 fullWidth
+                disabled={isLoading}
               />
             </Grid>
 
             <Grid item xs={12} width="50%">
-              <Button variant="contained" fullWidth type="submit">
+              <LoadingButton variant="contained" fullWidth type="submit" loading={isLoading}>
                 Войти
-              </Button>
+              </LoadingButton>
             </Grid>
           </Grid>
         </form>
