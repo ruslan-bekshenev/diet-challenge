@@ -8,9 +8,7 @@ import Auth from './pages/Auth'
 import Main from './pages/Main'
 
 function App() {
-  useEffect(() => {
-    instance.get('/meal')
-  }, [])
+
   return (
     <Paper sx={{ height: '100%', borderRadius: 0, background: '#121212' }}>
       <BrowserRouter>

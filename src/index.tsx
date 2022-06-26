@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Provider } from 'react-redux'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { createTheme, ThemeProvider } from '@mui/material'
 
 import './index.css'
 
-import { store } from './store/store'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
@@ -16,14 +15,16 @@ const darkTheme = createTheme({
   },
 })
 
+const queryClient = new QueryClient()
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={darkTheme}>
         <App />
       </ThemeProvider>
-    </Provider>
+    </QueryClientProvider>
   </React.StrictMode>,
 )
 

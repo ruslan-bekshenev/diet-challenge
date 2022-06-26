@@ -8,12 +8,16 @@ function getLocalRefreshToken() {
   const refreshToken = window.localStorage.getItem('refreshToken')
   return refreshToken
 }
+
+console.log(process.env.BASE_URL)
 export const instance = axios.create({
-  baseURL: 'http://localhost:8000/api',
+  baseURL: process.env.BASE_URL,
   headers: {
     'Content-Type': 'application/json',
+    Authorization:
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJiZWtzaGVuZXYyMzMzQGdtYWlsLmNvbSIsImlkIjoiMzdkZGEyZjktNjZiNy00NTA2LTlkMjgtYTNmY2E2ZTFmNTY1IiwiaWF0IjoxNjU2MjAwNzMyLCJleHAiOjE2NTYyMDQzMzJ9.cBbKSHZW9iqmN9Ur75FnyF9AbeXC6U4lGHNAGR3O2gE',
   },
-  withCredentials: true,
+  // withCredentials: true,
 })
 instance.interceptors.request.use(
   (config: any) => {
