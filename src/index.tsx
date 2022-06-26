@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material'
 
 import './index.css'
 
+import { AuthProvider } from './context/AuthProvider'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
@@ -22,7 +23,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={darkTheme}>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>,

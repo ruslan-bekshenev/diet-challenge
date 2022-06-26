@@ -13,9 +13,9 @@ const InputForm: FC<InputFormProps> = ({ name, control, ...rest }) => {
     <Controller
       control={control}
       name={name}
-      render={() => (
+      render={({ field }) => (
         <FormControl>
-          <TextField {...rest} />
+          <TextField {...rest} {...field} />
         </FormControl>
       )}
     />

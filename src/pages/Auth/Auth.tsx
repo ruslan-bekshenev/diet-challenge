@@ -5,13 +5,20 @@ import { Button, Grid, Paper, Typography } from '@mui/material'
 import { Container } from '@mui/system'
 
 import InputForm from '../../components/InputForm/InputForm'
+import { useAuthContext } from '../../context/AuthProvider'
+import { LoginProps } from '../../context/AuthProvider/types'
 
 const Auth = () => {
-  const { control } = useForm()
+  const { control, handleSubmit } = useForm<LoginProps>()
+  const { signin } = useAuthContext()
+  const handleAuth = (data: LoginProps): void => {
+    signin(data)
+  }
+  console.log(process.env)
   return (
     <Container maxWidth="sm" sx={{ py: 10, height: '100%', alignItems: 'center', display: 'flex' }}>
       <Paper sx={{ width: '100%', padding: 10 }}>
-        <form>
+        <form onSubmit={handleSubmit(handleAuth)}>
           <Grid
             container
             spacing={3}
@@ -27,8 +34,8 @@ const Auth = () => {
                 name="email"
                 control={control}
                 size="medium"
-                label="Пароль"
-                type="password"
+                label="E-mail"
+                type="email"
                 fullWidth
               />
             </Grid>
@@ -44,7 +51,7 @@ const Auth = () => {
             </Grid>
 
             <Grid item xs={12} width="50%">
-              <Button variant="contained" fullWidth>
+              <Button variant="contained" fullWidth type="submit">
                 Войти
               </Button>
             </Grid>
