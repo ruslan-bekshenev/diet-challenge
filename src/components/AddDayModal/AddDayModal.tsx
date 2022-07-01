@@ -33,7 +33,7 @@ const AddDayModal: FC<AddDayModalProps> = ({ open, onClose }) => {
           Добавить день
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-         adsasd
+         adsasdфывфв
         </Typography>
       </Box>
     </Modal>
